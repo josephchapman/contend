@@ -1,0 +1,6 @@
+{
+  "name": "AWS",
+  "id": "aws",
+  "version": "0.0.1",
+  "description": "Install AWS CLI and SSM plugin"
+}

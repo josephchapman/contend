@@ -1,0 +1,6 @@
+{
+  "name": "Argo Workflows",
+  "id": "argo_workflows",
+  "version": "0.0.1",
+  "description": "Install Argo Workflows"
+}

@@ -1,0 +1,17 @@
+{
+  "name": "Kubectl",
+  "id": "kubectl",
+  "version": "0.0.1",
+  "description": "Install kubectl",
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "ms-kubernetes-tools.vscode-kubernetes-tools",
+        "redhat.vscode-yaml"
+      ],
+      "settings": {
+        "redhat.telemetry.enabled": false
+      }
+    }
+  }
+}

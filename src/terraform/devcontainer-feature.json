@@ -1,0 +1,13 @@
+{
+  "name": "Terraform",
+  "id": "terraform",
+  "version": "0.0.1",
+  "description": "Install tfenv and tgswitch for Terraform and Terragrunt management",
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "HashiCorp.terraform"
+      ]
+    }
+  }
+}
