@@ -13,9 +13,13 @@ apt install -y \
     git # required for plugin installation
 
 echo "Configuring shared environment"
-mkdir -p /usr/local/share/helm/config/registry/
-mkdir -p /usr/local/share/helm/plugins/
-mkdir -p /usr/local/share/helm/cache/repository/
+groupadd helm
+echo "helm" | tee -a /root/required_groups
+mkdir -m 775 -p /usr/local/share/helm/config/registry/
+mkdir -m 775 -p /usr/local/share/helm/plugins/
+mkdir -m 775 -p /usr/local/share/helm/cache/repository/
+chown -R :helm /usr/local/share/helm/
+chmod -R 775   /usr/local/share/helm/
 
 tee -a /etc/bash.bashrc > /dev/null \
 <<EOF
