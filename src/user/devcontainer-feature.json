@@ -10,9 +10,12 @@
       "description": "User name (string)"
     },
     "uid": {
-        "type": "int",
+        "type": "string",
         "default": "1000",
-        "description": "User ID (int)"
+        "description": "User ID (string)"
     }
-  }
+  },
+  "installsAfter": [
+    "../helm"
+  ]
 }
