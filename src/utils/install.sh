@@ -8,19 +8,25 @@ apt -y update
 DEBIAN_FRONTEND=noninteractive apt -y install \
     ansible \
     bash-completion \
+    cmake \
     curl \
     dnsutils \
+    gcc \
+    g++ \
     git \
     iproute2 \
     iputils-ping \
     jq \
     less \
+    make \
+    pwgen \
     redis-tools \
     sudo \
     unzip \
     vim-tiny \
     wget \
-    yamllint
+    yamllint \
+    zip
 
 echo "Cleaning up ..."
 apt clean
