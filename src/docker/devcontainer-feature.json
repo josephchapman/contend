@@ -1,0 +1,6 @@
+{
+  "name": "Docker",
+  "id": "docker",
+  "version": "0.0.1",
+  "description": "Install docker"
+}

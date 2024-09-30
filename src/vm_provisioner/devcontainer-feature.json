@@ -1,0 +1,6 @@
+{
+  "name": "VM Provisioner",
+  "id": "vm_provisioner",
+  "version": "0.0.1",
+  "description": "Install utilities to provision VMs"
+}

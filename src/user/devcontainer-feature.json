@@ -6,7 +6,7 @@
   "options": {
     "username": {
       "type": "string",
-      "default": "md",
+      "default": "contend",
       "description": "User name (string)"
     },
     "uid": {
@@ -14,8 +14,8 @@
         "default": "1000",
         "description": "User ID (string)"
     }
-  },
-  "installsAfter": [
-    "../helm"
-  ]
+  }
+  // "installsAfter": [
+  //   "../helm"
+  // ]
 }

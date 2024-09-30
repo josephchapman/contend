@@ -6,7 +6,7 @@ apt install -y \
     bash-completion \
     curl
 
-echo "Getting Istio version ..."
+echo "Getting istioctl version ..."
 ISTIO_VERSION="$(curl -sL https://github.com/istio/istio/releases | \
     grep -o 'releases/[0-9]*.[0-9]*.[0-9]*/' | sort -V | \
     tail -1 | awk -F'/' '{ print $2}')"

@@ -6,7 +6,6 @@ export TZ=Europe/London
 echo "Installing utilities ..."
 apt -y update
 DEBIAN_FRONTEND=noninteractive apt -y install \
-    ansible \
     bash-completion \
     cmake \
     curl \

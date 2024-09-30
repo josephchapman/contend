@@ -13,7 +13,9 @@ sed -i -E -e 's/^\s*(#\s*)?USERGROUPS_ENAB\s*\S*\s*$/USERGROUPS_ENAB no/' /etc/l
 echo "Creating user ..."
 useradd -u ${UID} -U -G root -m -s /bin/bash ${USERNAME}
 sudo -u ${USERNAME} -g ${USERNAME} mkdir /home/${USERNAME}/.config/
+sudo -u ${USERNAME} -g ${USERNAME} mkdir /home/${USERNAME}/.ssh/
 sudo -u ${USERNAME} -g ${USERNAME} touch /home/${USERNAME}/.bash_aliases
+sudo -u ${USERNAME} -g ${USERNAME} mkdir /home/${USERNAME}/Documents/
 sudo -u ${USERNAME} -g ${USERNAME} mkdir /home/${USERNAME}/bin/
 tee -a /home/${USERNAME}/.bash_aliases > /dev/null \
 <<EOF
