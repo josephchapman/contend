@@ -2,5 +2,12 @@
   "name": "Node.js",
   "id": "node.js",
   "version": "0.0.1",
-  "description": "Install Node.js"
+  "description": "Install Node.js",
+  "options": {
+    "node_version": {
+      "type": "string",
+      "default": "22.13.1",
+      "description": "Version (string)"
+    }
+  }
 }
