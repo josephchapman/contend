@@ -1,0 +1,13 @@
+{
+  "name": "stockfish",
+  "id": "stockfish",
+  "version": "0.0.1",
+  "description": "Install stockfish",
+  "options": {
+    "stockfish_version": {
+      "type": "string",
+      "default": "17",
+      "description": "Version (string)"
+    }
+  }
+}
