@@ -2,5 +2,14 @@
   "name": "Utils",
   "id": "utils",
   "version": "0.0.1",
-  "description": "Install common utilities"
+  "description": "Install common utilities",
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "github.copilot",
+        "GitHub.copilot-chat",
+        "redhat.vscode-yaml"
+      ]
+    }
+  }
 }
