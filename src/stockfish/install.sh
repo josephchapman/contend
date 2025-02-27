@@ -3,7 +3,6 @@
 echo "Installing requirements ..."
 apt update
 apt install -y \
-    bash-completion \
     curl
 
 echo "Creating TMP directory ..."
