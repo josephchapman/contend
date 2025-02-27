@@ -7,8 +7,10 @@
     "vscode": {
       "extensions": [
         "github.copilot",
-        "GitHub.copilot-chat",
-        "redhat.vscode-yaml"
+        "gitHub.copilot-chat",
+        "github.vscode-github-actions",
+        "redhat.vscode-yaml",
+        "ms-azuretools.vscode-docker"
       ]
     }
   }
