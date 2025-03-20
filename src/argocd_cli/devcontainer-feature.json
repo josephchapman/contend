@@ -1,0 +1,6 @@
+{
+  "name": "ArgoCD CLI",
+  "id": "argocd_cli",
+  "version": "0.0.1",
+  "description": "Install ArgoCD CLI"
+}
