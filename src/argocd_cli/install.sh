@@ -30,10 +30,8 @@ apt -y autoremove
 rm -rf /var/lib/apt/lists/*
 
 
-# echo "Configuring Bash completion (argo workflows) ..."
-# # echo "source <(argo completion bash)" | tee -a /home/md/.bash_aliases /root/.bash_aliases
-# # echo "source <(argo completion bash)" | tee -a /etc/profile.d/custom_bash_completions.sh > /dev/null
-# echo "source <(argo completion bash)" | tee -a /etc/bash.bashrc > /dev/null
-# # non-login shell for all users
+echo "Configuring Bash completion (argocd cli) ..."
+echo "source <(argocd completion bash)" | tee -a /etc/bash.bashrc > /dev/null
+# non-login shell for all users
 
 echo "ArgoCD CLI installed"
