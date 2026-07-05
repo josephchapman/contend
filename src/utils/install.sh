@@ -18,6 +18,7 @@ DEBIAN_FRONTEND=noninteractive apt -y install \
     iputils-ping \
     jq \
     less \
+    locales \
     make \
     pwgen \
     redis-tools \
@@ -38,4 +39,5 @@ rm -rf /var/lib/apt/lists/*
 # echo "Configuring Bash completion ..."
 # echo "source /etc/bash_completion" | tee -a /etc/profile.d/custom_bash_completions.sh > /dev/null
 
+locale-gen en_US.UTF-8
 echo "Utils installed"
