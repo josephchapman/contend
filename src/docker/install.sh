@@ -8,6 +8,10 @@ apt install -y \
     curl \
     gnupg
 
+# Rancher Desktop uses 101 as the docker group id, so we need to pre-crete it to match.
+echo "Creating docker group for Rancher Desktop (gid 101) ..." 
+groupadd -g 101 docker
+
 echo "Installing Docker's GPG key ..."
 curl -fsSL https://download.docker.com/linux/ubuntu/gpg | gpg --dearmor -o /etc/apt/trusted.gpg.d/docker.gpg
 # chmod a+r /etc/apt/trusted.gpg.d/docker.gpg

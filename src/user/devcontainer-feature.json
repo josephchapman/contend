@@ -10,9 +10,14 @@
       "description": "User name (string)"
     },
     "uid": {
-        "type": "string",
-        "default": "1000",
-        "description": "User ID (string)"
+      "type": "string",
+      "default": "1001", //resolute has userid 1000 already, whereas jammy did not
+      "description": "User ID (string)"
+    },
+    "docker_group": {
+      "type": "boolean",
+      "default": true,
+      "description": "Add the user to the docker group (boolean)"
     }
   }
   // "installsAfter": [

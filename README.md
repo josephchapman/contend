@@ -27,7 +27,7 @@ $ tee devcontainer.json \
 <<EOF
 {
   "name": "Ubuntu",
-  "image": "ubuntu:jammy",
+  "image": "ubuntu:resolute",
   "remoteUser": "contend",
   "customizations": {
     "vscode": {

@@ -2,5 +2,12 @@
   "name": "Docker",
   "id": "docker",
   "version": "0.0.1",
-  "description": "Install docker"
+  "description": "Install docker",
+  "mounts": [
+    {
+      "type": "bind",
+      "source": "/var/run/docker.sock",
+      "target": "/var/run/docker.sock"
+    }
+  ]
 }

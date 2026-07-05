@@ -38,4 +38,9 @@ if [ -f /root/required_groups ]; then
   done < /root/required_groups
 fi
 
+if [ "${DOCKER_GROUP}" = "true" ]; then
+  usermod -aG docker ${USERNAME}
+  echo "Added user to docker group"
+fi
+
 echo "User created"
