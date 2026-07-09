@@ -28,6 +28,13 @@ apt clean
 apt -y autoremove
 rm -rf /var/lib/apt/lists/*
 
+echo "Adding .aws/ and aliases to skel ..."
+mkdir -p /etc/skel/.aws/
+tee -a /etc/skel/.bash_aliases > /dev/null \
+<<'EOF'
+alias awslogin='aws sso login --profile ${AWS_PROFILE}'
+EOF
+
 echo "Configuring Bash completion (aws) ..."
 echo "complete -C '/usr/local/bin/aws_completer' aws" | tee -a /etc/bash.bashrc > /dev/null
 # non-login shell for all users
