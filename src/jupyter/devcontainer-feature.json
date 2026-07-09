@@ -8,6 +8,21 @@
       "type": "string",
       "default": "/opt/devcontainer-venv",
       "description": "Virtual environment install path"
+    },
+    "enable_K8s_Cluster_For_Pyspark_Workers": {
+      "type": "boolean",
+      "default": true,
+      "description": "Enable PySpark to use Kubernetes worker nodes"
+    },
+    "k8s_api_server_url": {
+      "type": "string",
+      "default": "https://127.0.0.1:6443",
+      "description": "URL of the Kubernetes API server"
+    },
+    "spark_K8s_Container_Image": {
+      "type": "string",
+      "default": "apache/spark:4.1.2-java17",
+      "description": "Container image used for Spark Kubernetes worker pods"
     }
   },
   "containerEnv": {
