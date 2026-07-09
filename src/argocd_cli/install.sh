@@ -9,7 +9,9 @@ apt install -y \
 echo "Creating tmp directory ..."
 TMP=$(mktemp -d /tmp/argocdcli.XXXXXX)
 
-ARGOCD_VERSION=$(curl --silent "https://api.github.com/repos/argoproj/argo-cd/releases/latest" | grep '"tag_name"' | sed -E 's/.*"([^"]+)".*/\1/')
+# ARGOCD_VERSION=$(curl --silent "https://api.github.com/repos/argoproj/argo-cd/releases/latest" | grep '"tag_name"' | sed -E 's/.*"([^"]+)".*/\1/')
+
+ARGOCD_VERSION="v3.4.4" # temporary fix for GitHub API rate limit issue
 
 echo "Downloading ArgoCD CLI ..."
 curl -fsSL \
