@@ -20,6 +20,9 @@ curl -LO "https://dl.k8s.io/$(curl -L -s https://dl.k8s.io/release/stable.txt)/b
 echo "If checksum valid, installing kubectl ..."
 echo "$(cat kubectl.sha256)  kubectl" | sha256sum --check && install -o root -g root -m 0755 kubectl /usr/local/bin/kubectl
 
+echo "Adding .kube/ to skel ..."
+mkdir -p /etc/skel/.kube/
+
 echo "Configuring Bash completion (kubectl) ..."
 echo "source <(kubectl completion bash)" | tee -a /etc/bash.bashrc > /dev/null
 # non-login shell for all users
