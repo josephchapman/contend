@@ -23,9 +23,12 @@ sudo -u ${USERNAME} -g ${USERNAME} mkdir /home/${USERNAME}/.ssh/
 sudo -u ${USERNAME} -g ${USERNAME} mkdir /home/${USERNAME}/Documents/
 sudo -u ${USERNAME} -g ${USERNAME} mkdir /home/${USERNAME}/bin/
 tee -a /home/${USERNAME}/.bash_aliases > /dev/null \
-<<'EOF'
+<<EOF
 if [[ ":\${PATH}:" != *":/home/${USERNAME}/bin:"* ]]; then
   export PATH=\${PATH}:/home/${USERNAME}/bin
+fi
+if [[ ":\${PATH}:" != *":/home/${USERNAME}/.local/bin:"* ]]; then
+  export PATH=\${PATH}:/home/${USERNAME}/.local/bin
 fi
 EOF
 

@@ -2,7 +2,7 @@
 set -euo pipefail
 
 VENV_PATH=${VENV_PATH:-/opt/devcontainer-venv}
-ENABLE_K8S_CLUSTRER_FOR_PYSPARK_WORKERS=${ENABLE_K8S_CLUSTRER_FOR_PYSPARK_WORKERS:-true}
+ENABLE_K8S_CLUSTER_FOR_PYSPARK_WORKERS=${ENABLE_K8S_CLUSTER_FOR_PYSPARK_WORKERS:-true}
 K8S_API_SERVER_URL=${K8S_API_SERVER_URL:-https://127.0.0.1:6443}
 SPARK_K8S_CONTAINER_IMAGE=${SPARK_K8S_CONTAINER_IMAGE:-apache/spark:4.1.2-java17}
 
@@ -27,16 +27,16 @@ python -m pip install --no-cache-dir \
   pandas \
   pyspark
 
-if [ "${ENABLE_K8S_CLUSTRER_FOR_PYSPARK_WORKERS}" = "true" ]; then
+if [ "${ENABLE_K8S_CLUSTER_FOR_PYSPARK_WORKERS}" = "true" ]; then
   tee /etc/profile.d/pyspark-k8s-cluster.sh 2>&1 > /dev/null \
-<<'EOF'
+<<EOF
 export PYSPARK_K8S_API_SERVER="${K8S_API_SERVER_URL}"
-export PYSPARK_SUMIT_ARGS="--master k8s://${K8S_API_SERVER_URL} --conf spark.kubernetes.container.image=${SPARK_K8S_CONTAINER_IMAGE} pyspark-shell"
+export PYSPARK_SUBMIT_ARGS="--master k8s://${K8S_API_SERVER_URL} --conf spark.kubernetes.container.image=${SPARK_K8S_CONTAINER_IMAGE} pyspark-shell"
 EOF
 else
   tee /etc/profile.d/pyspark-k8s-cluster.sh 2>&1 > /dev/null \
-<<'EOF'
-export PYSPARK_SUMIT_ARGS="--master local[*] pyspark-shell"
+<<EOF
+export PYSPARK_SUBMIT_ARGS="--master local[*] pyspark-shell"
 EOF
 fi
 chmod +x /etc/profile.d/pyspark-k8s-cluster.sh
