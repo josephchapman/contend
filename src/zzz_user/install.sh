@@ -10,6 +10,30 @@ echo "Configuring Login defs ..."
 sed -i -E -e 's/^\s*(#\s*)?UMASK\s*\S*\s*$/UMASK		077/' /etc/login.defs
 sed -i -E -e 's/^\s*(#\s*)?USERGROUPS_ENAB\s*\S*\s*$/USERGROUPS_ENAB no/' /etc/login.defs
 
+echo "Resolving existing UID/GID 1000 collisions ..."
+while IFS= read -r EXISTING_USER; do
+  if [ "${EXISTING_USER}" = "${USERNAME}" ]; then
+    echo "User ${USERNAME} already has UID 1000"
+  else
+    echo "Changing UID for ${EXISTING_USER} from 1000 to 1001"
+    usermod -u 1001 ${EXISTING_USER}
+  fi
+done < <(awk -F: '$3 == 1000 {print $1}' /etc/passwd)
+
+while IFS= read -r EXISTING_GROUP; do
+  if [ "${EXISTING_GROUP}" = "${USERNAME}" ]; then
+    echo "Group ${USERNAME} already has GID 1000"
+  else
+    echo "Changing GID for ${EXISTING_GROUP} from 1000 to 1001"
+    groupmod -g 1001 ${EXISTING_GROUP}
+  fi
+done < <(awk -F: '$3 == 1000 {print $1}' /etc/group)
+
+if ! getent group "${USERNAME}" > /dev/null; then
+  echo "Creating group ${USERNAME}"
+  groupadd -g 1000 "${USERNAME}"
+fi
+
 tee -a /etc/skel/.bash_aliases > /dev/null \
 <<'EOF'
 PS1='[\[\033[1;32m\]\u\[\033[m\]@\[\033[1;35m\]\h\[\033[m\] \[\033[1;34m\]\W\[\033[m\]]\$ '
