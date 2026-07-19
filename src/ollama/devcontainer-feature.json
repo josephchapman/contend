@@ -1,0 +1,6 @@
+{
+  "name": "Ollama",
+  "id": "ollama",
+  "version": "0.0.1",
+  "description": "Install ollama"
+}
