@@ -23,9 +23,12 @@ source "${VENV_PATH}/bin/activate"
 python -m pip install --upgrade pip
 python -m pip install --no-cache-dir \
   jupyterlab \
+  ipykernel \
   numpy \
   pandas \
   pyspark
+
+python -m ipykernel install --sys-prefix --name python3 --display-name "Python 3 (ipykernel)"
 
 if [ "${ENABLE_K8S_CLUSTER_FOR_PYSPARK_WORKERS}" = "true" ]; then
   tee /etc/profile.d/pyspark-k8s-cluster.sh 2>&1 > /dev/null \
