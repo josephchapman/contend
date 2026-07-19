@@ -13,14 +13,19 @@ echo "Creating docker group for Rancher Desktop (gid 101) ..."
 groupadd -g 101 docker
 
 echo "Installing Docker's GPG key ..."
-curl -fsSL https://download.docker.com/linux/ubuntu/gpg | gpg --dearmor -o /etc/apt/trusted.gpg.d/docker.gpg
-# chmod a+r /etc/apt/trusted.gpg.d/docker.gpg
+install -m 0755 -d /etc/apt/keyrings
+curl -fsSL https://download.docker.com/linux/ubuntu/gpg -o /etc/apt/keyrings/docker.asc
+chmod a+r /etc/apt/keyrings/docker.asc
 
 echo "Adding Docker repository ..."
-tee /etc/apt/sources.list.d/docker.list > /dev/null \
+tee /etc/apt/sources.list.d/docker.sources  > /dev/null \
 <<EOF
-deb [arch="$(dpkg --print-architecture)" signed-by=/etc/apt/trusted.gpg.d/docker.gpg] https://download.docker.com/linux/ubuntu \
-  "$(. /etc/os-release && echo "$VERSION_CODENAME")" stable
+Types: deb
+URIs: https://download.docker.com/linux/ubuntu
+Suites: $(. /etc/os-release && echo "${UBUNTU_CODENAME:-$VERSION_CODENAME}")
+Components: stable
+Architectures: $(dpkg --print-architecture)
+Signed-By: /etc/apt/keyrings/docker.asc
 EOF
 
 echo "Installing Docker ..."
@@ -30,7 +35,8 @@ apt -y install \
     docker-ce-cli \
     containerd.io \
     docker-buildx-plugin \
-    docker-compose-plugin
+    docker-compose-plugin \
+    docker-model-plugin
 
 echo "Cleaning up ..."
 apt clean
