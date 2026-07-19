@@ -17,9 +17,11 @@ DEBIAN_FRONTEND=noninteractive apt -y install \
     iproute2 \
     iputils-ping \
     jq \
+    ldap-utils \
     less \
     locales \
     make \
+    netcat-openbsd \
     pwgen \
     redis-tools \
     sudo \
