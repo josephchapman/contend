@@ -18,7 +18,7 @@ curl -fsSL https://download.docker.com/linux/ubuntu/gpg -o /etc/apt/keyrings/doc
 chmod a+r /etc/apt/keyrings/docker.asc
 
 echo "Adding Docker repository ..."
-tee /etc/apt/sources.list.d/docker.sources  > /dev/null \
+tee /etc/apt/sources.list.d/docker.sources > /dev/null \
 <<EOF
 Types: deb
 URIs: https://download.docker.com/linux/ubuntu

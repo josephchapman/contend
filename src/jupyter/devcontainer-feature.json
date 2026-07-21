@@ -42,5 +42,5 @@
       ]
     }
   },
-  "postStartCommand": "bash -lc 'set -e; LOG=/tmp/jupyter.log; if ! ss -ltn 2 > /dev/null | grep -q \":8888\"; then nohup /usr/local/bin/start-jupyter.sh > \"$LOG\" 2>&1 & fi; for i in {1..30}; do if ss -ltn 2 > /dev/null | grep -q \":8888\"; then echo \"Jupyter Lab is listening on 8888\"; exit 0; fi; sleep 1; done'"
+  "postStartCommand": "bash -lc 'set -e; LOG=/tmp/jupyter.log; if ! ss -ltn 2> /dev/null | grep -q \":8888\"; then nohup /usr/local/bin/start-jupyter.sh > \"$LOG\" 2>&1 & fi; for i in {1..30}; do if ss -ltn 2> /dev/null | grep -q \":8888\"; then echo \"Jupyter Lab is listening on 8888\"; exit 0; fi; sleep 1; done'"
 }

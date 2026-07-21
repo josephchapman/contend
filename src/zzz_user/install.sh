@@ -16,18 +16,18 @@ while IFS= read -r EXISTING_USER; do
     echo "User ${USERNAME} already has UID 1000"
   else
     echo "Changing UID for ${EXISTING_USER} from 1000 to 1001"
-    usermod -u 1001 ${EXISTING_USER}
+    usermod -u 1001 "${EXISTING_USER}"
   fi
-done < <(awk -F: '$3 == 1000 {print $1}' /etc/passwd)
+done < <(awk -F: '$3 == 1000 { print $1 }' /etc/passwd)
 
 while IFS= read -r EXISTING_GROUP; do
   if [ "${EXISTING_GROUP}" = "${USERNAME}" ]; then
     echo "Group ${USERNAME} already has GID 1000"
   else
     echo "Changing GID for ${EXISTING_GROUP} from 1000 to 1001"
-    groupmod -g 1001 ${EXISTING_GROUP}
+    groupmod -g 1001 "${EXISTING_GROUP}"
   fi
-done < <(awk -F: '$3 == 1000 {print $1}' /etc/group)
+done < <(awk -F: '$3 == 1000 { print $1 }' /etc/group)
 
 if ! getent group "${USERNAME}" > /dev/null; then
   echo "Creating group ${USERNAME}"
@@ -41,7 +41,7 @@ alias checkcert='echo "${CERT}" | openssl x509 -noout -subject -issuer -dates'
 EOF
 
 echo "Creating user ..."
-useradd -u ${UID} -U -G root -m -s /bin/bash ${USERNAME}
+useradd -u 1000 -g 1000 -G root -m -s /bin/bash ${USERNAME}
 sudo -u ${USERNAME} -g ${USERNAME} mkdir /home/${USERNAME}/.config/
 sudo -u ${USERNAME} -g ${USERNAME} mkdir /home/${USERNAME}/.ssh/
 sudo -u ${USERNAME} -g ${USERNAME} mkdir /home/${USERNAME}/Documents/
