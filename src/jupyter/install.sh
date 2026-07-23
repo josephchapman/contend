@@ -22,13 +22,17 @@ source "${VENV_PATH}/bin/activate"
 
 python -m pip install --upgrade pip
 python -m pip install --no-cache-dir \
-  jupyterlab \
+  bash_kernel \
   ipykernel \
+  jupyterlab \
+  langchain \
+  langchain-openai \
   numpy \
   pandas \
   pyspark
 
 python -m ipykernel install --sys-prefix --name python3 --display-name "Python 3 (ipykernel)"
+python -m bash_kernel.install
 
 if [ "${ENABLE_K8S_CLUSTER_FOR_PYSPARK_WORKERS}" = "true" ]; then
   tee /etc/profile.d/pyspark-k8s-cluster.sh 2>&1 > /dev/null \
@@ -43,6 +47,19 @@ export PYSPARK_SUBMIT_ARGS="--master local[*] pyspark-shell"
 EOF
 fi
 chmod +x /etc/profile.d/pyspark-k8s-cluster.sh
+
+# settings
+SETTINGS_DIR="${VENV_PATH}/share/jupyter/lab/settings"
+mkdir -p "${SETTINGS_DIR}"
+
+tee "${SETTINGS_DIR}/overrides.json" 2>&1 > /dev/null \
+<<'EOF'
+{
+  "@jupyterlab/apputils-extension:themes": {
+    "theme": "JupyterLab Dark"
+  }
+}
+EOF
 
 tee /usr/local/bin/start-jupyter.sh 2>&1 > /dev/null \
 <<'EOF'
