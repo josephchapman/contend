@@ -7,8 +7,10 @@
     "vscode": {
       "extensions": [
         "github.vscode-github-actions",
+        "ms-azuretools.vscode-docker",
+        "ms-vscode.makefile-tools",
         "redhat.vscode-yaml",
-        "ms-azuretools.vscode-docker"
+        "redis.redis-for-vscode"
       ]
     }
   }

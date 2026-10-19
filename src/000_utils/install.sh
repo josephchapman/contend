@@ -23,7 +23,13 @@ DEBIAN_FRONTEND=noninteractive apt -y install \
     make \
     netcat-openbsd \
     pwgen \
+    python3 \
+    python3-pip \
+    python3-numpy \
+    python3-scipy \
+    python-is-python3 \
     redis-tools \
+    ripgrep \
     sudo \
     unzip \
     vim-tiny \
@@ -41,5 +47,12 @@ rm -rf /var/lib/apt/lists/*
 # echo "Configuring Bash completion ..."
 # echo "source /etc/bash_completion" | tee -a /etc/profile.d/custom_bash_completions.sh > /dev/null
 
+echo "Configuring locales ..."
 locale-gen en_US.UTF-8
+echo "Locales configured"
+
+echo "Installing uv ..."
+curl -LsSf https://astral.sh/uv/install.sh | env UV_INSTALL_DIR="/usr/local/bin" sh
+echo "uv installed"
+
 echo "Utils installed"
