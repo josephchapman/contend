@@ -32,11 +32,22 @@ echo "Adding .aws/ and aliases to skel ..."
 mkdir -p /etc/skel/.aws/
 tee -a /etc/skel/.bash_aliases > /dev/null \
 <<'EOF'
-alias awslogin='aws sso login --profile ${AWS_PROFILE}'
-EOF
+# AWS Bash Completion
+complete -C '/usr/local/bin/aws_completer' aws
 
-echo "Configuring Bash completion (aws) ..."
-echo "complete -C '/usr/local/bin/aws_completer' aws" | tee -a /etc/bash.bashrc > /dev/null
-# non-login shell for all users
+# AWS Login Function
+awslogin() {
+    read -p "Enter AWS Profile Name: " profile_name
+    if [ -z "$profile_name" ]; then
+        echo "Error: No profile name provided."
+        return 1
+    fi
+    export AWS_PROFILE="$profile_name"
+    echo "AWS profile set to '$AWS_PROFILE'."
+    aws sso login
+    aws sts get-caller-identity
+}
+
+EOF
 
 echo "AWS CLI installation complete"
