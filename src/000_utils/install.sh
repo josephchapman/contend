@@ -55,4 +55,9 @@ echo "Installing uv ..."
 curl -LsSf https://astral.sh/uv/install.sh | env UV_INSTALL_DIR="/usr/local/bin" sh
 echo "uv installed"
 
+tee -a /etc/skel/.bash_aliases > /dev/null \
+<< 'EOF'
+alias grep='rg'
+EOF
+
 echo "Utils installed"
