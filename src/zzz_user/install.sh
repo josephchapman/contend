@@ -37,7 +37,7 @@ fi
 tee -a /etc/skel/.bash_aliases > /dev/null \
 <<'EOF'
 PS1='[\[\033[1;32m\]\u\[\033[m\]@\[\033[1;35m\]\h\[\033[m\] \[\033[1;34m\]\W\[\033[m\]]\$ '
-alias checkcert='echo "${CERT}" | openssl x509 -noout -subject -issuer -dates'
+alias checkcert='echo "Paste X.509 certificate below (Press Ctrl+D to finish):"; CERT=$(cat); echo "${CERT}" | openssl x509 -noout -subject -issuer -dates -serial'
 EOF
 
 echo "Creating user ..."
