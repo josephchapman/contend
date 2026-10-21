@@ -15,8 +15,11 @@ curl -fsSL \
     -o ${TMP}/sops \
     https://github.com/getsops/sops/releases/download/v${SOPS_VERSION}/sops-v${SOPS_VERSION}.linux.amd64
 
-echo "chmod-ing SOPS ..."
-chmod u+x ${TMP}/sops
+echo "Setting ownership ..."
+chown root: ${TMP}/sops
+
+echo "Setting permissions ..."
+chmod 0755 ${TMP}/sops
 
 echo "Installing SOPS ..."
 mv ${TMP}/sops /usr/local/bin/sops
