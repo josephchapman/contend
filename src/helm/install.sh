@@ -14,15 +14,17 @@ apt install -y \
 
 echo "Configuring shared environment"
 groupadd helm
-echo "helm" | tee -a /root/required_groups
+tee -a /root/required_groups > /dev/null <<'EOF'
+helm
+EOF
 mkdir -m 775 -p /usr/local/share/helm/config/registry/
 mkdir -m 775 -p /usr/local/share/helm/plugins/
 mkdir -m 775 -p /usr/local/share/helm/cache/repository/
 chown -R :helm /usr/local/share/helm/
 chmod -R 775   /usr/local/share/helm/
 
-tee -a /etc/bash.bashrc > /dev/null \
-<<EOF
+tee -a /etc/skel/.bash_aliases > /dev/null \
+<<'EOF'
 export HELM_DATA_HOME=/usr/local/share/helm/
 export HELM_PLUGINS=/usr/local/share/helm/plugins/
 export HELM_CONFIG_HOME=/usr/local/share/helm/config/
@@ -60,7 +62,10 @@ apt -y autoremove
 rm -rf /var/lib/apt/lists/*
 
 echo "Configuring Bash completion (helm) ..."
-echo "source <(helm completion bash)" | tee -a /etc/bash.bashrc > /dev/null
+tee -a /etc/skel/.bash_aliases > /dev/null \
+<<'EOF'
+source <(helm completion bash)
+EOF
 # non-login shell for all users
 
 echo "Installing Helm plugins ..."

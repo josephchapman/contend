@@ -32,9 +32,10 @@ rm -rf /var/lib/apt/lists/*
 
 
 echo "Configuring Bash completion (argo workflows) ..."
-# echo "source <(argo completion bash)" | tee -a /home/md/.bash_aliases /root/.bash_aliases
-# echo "source <(argo completion bash)" | tee -a /etc/profile.d/custom_bash_completions.sh > /dev/null
-echo "source <(argo completion bash)" | tee -a /etc/bash.bashrc > /dev/null
+tee -a /etc/skel/.bash_aliases > /dev/null \
+<<'EOF'
+source <(argo completion bash)
+EOF
 # non-login shell for all users
 
 echo "Argo Workflows installed"

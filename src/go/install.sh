@@ -20,7 +20,10 @@ mv ${TMP}/go /usr/local/
 
 
 echo "Configuring Bash completion (go) ..."
-echo "export PATH=\${PATH}:/usr/local/go/bin" | tee -a /etc/bash.bashrc > /dev/null
+tee -a /etc/skel/.bash_aliases > /dev/null \
+<<EOF
+export PATH=\${PATH}:/usr/local/go/bin
+EOF
 # non-login shell for all users
 
 echo "Cleaning up ..."

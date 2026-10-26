@@ -23,14 +23,13 @@ echo "$(cat kubectl.sha256)  kubectl" | sha256sum --check && install -o root -g 
 echo "Adding .kube/ to skel ..."
 mkdir -p /etc/skel/.kube/
 
-echo "Configuring Bash completion (kubectl) ..."
-echo "source <(kubectl completion bash)" | tee -a /etc/bash.bashrc > /dev/null
-# non-login shell for all users
-
-echo "Configuring Bash alias (kubectl -> k) ..."
-echo "alias k=kubectl" | tee -a /etc/bash.bashrc > /dev/null
-# non-login shell for all users
-echo "complete -o default -F __start_kubectl k" | tee -a /etc/bash.bashrc > /dev/null
+echo "Configuring Bash completion (kubectl), alias (kubectl -> k), and autocomplete..."
+tee -a /etc/skel/.bash_aliases > /dev/null \
+<<'EOF'
+source <(kubectl completion bash)
+alias k=kubectl
+complete -o default -F __start_kubectl k
+EOF
 # non-login shell for all users
 
 echo "kubectl installed"

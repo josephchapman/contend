@@ -30,7 +30,10 @@ rm -rf /var/lib/apt/lists/*
 echo "Configuring Bash completion (packer) ..."
 # 'packer -autocomplete-install' just adds the 'complete' line to '.bashrc'
 # The following line does it manually
-echo "complete -C /usr/bin/packer packer" | tee -a /etc/bash.bashrc > /dev/null
+tee -a /etc/skel/.bash_aliases > /dev/null \
+<<'EOF'
+complete -C /usr/bin/packer packer
+EOF
 # non-login shell for all users
 
 echo "Packer installed"

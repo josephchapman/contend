@@ -20,7 +20,10 @@ echo "Installing node ..."
 cp -r ${TMP}/node-v${NODE_VERSION}-linux-x64/{bin,include,lib,share} /usr/local/
 
 echo "Configuring Bash completion (npm) ..."
-echo "source <(npm completion bash)" | tee -a /etc/bash.bashrc > /dev/null
+tee -a /etc/skel/.bash_aliases > /dev/null \
+<<'EOF'
+source <(npm completion bash)
+EOF
 # non-login shell for all users
 
 echo "Cleaning up ..."

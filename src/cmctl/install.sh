@@ -19,7 +19,10 @@ echo "Installing cmctl ..."
 mv ${TMP}/cmctl /usr/local/bin/
 
 echo "Configuring Bash completion (cmctl) ..."
-echo "source <(cmctl completion bash)" | tee -a /etc/bash.bashrc > /dev/null
+tee -a /etc/skel/.bash_aliases > /dev/null \
+<<'EOF'
+source <(cmctl completion bash)
+EOF
 # non-login shell for all users
 
 echo "Cleaning up ..."

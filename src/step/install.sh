@@ -16,7 +16,10 @@ echo "Installing step ..."
 dpkg -i ${TMP}/step-cli_${STEP_VERSION}_amd64.deb
 
 echo "Configuring Bash completion (step) ..."
-echo "source <(step completion bash)" | tee -a /etc/bash.bashrc > /dev/null
+tee -a /etc/skel/.bash_aliases > /dev/null \
+<<'EOF'
+source <(step completion bash)
+EOF
 # non-login shell for all users
 
 echo "Cleaning up ..."

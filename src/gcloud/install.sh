@@ -26,9 +26,15 @@ apt -y autoremove
 rm -rf /var/lib/apt/lists/*
 
 echo "Configuring Bash completion (gcloud) ..."
-echo "source /usr/bin/google-cloud-sdk/path.bash.inc"       | tee -a /etc/bash.bashrc > /dev/null
+tee -a /etc/skel/.bash_aliases > /dev/null \
+<<'EOF'
+source /usr/bin/google-cloud-sdk/path.bash.inc
+EOF
 # non-login shell for all users
-echo "source /usr/bin/google-cloud-sdk/completion.bash.inc" | tee -a /etc/bash.bashrc > /dev/null
+tee -a /etc/skel/.bash_aliases > /dev/null \
+<<'EOF'
+source /usr/bin/google-cloud-sdk/completion.bash.inc
+EOF
 # non-login shell for all users
 
 echo "Installing gcloud extentions (beta) ..."
