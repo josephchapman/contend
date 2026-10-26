@@ -16,7 +16,7 @@ curl -fsSL \
     https://github.com/getsops/sops/releases/download/v${SOPS_VERSION}/sops-v${SOPS_VERSION}.linux.amd64
 
 echo "Setting ownership ..."
-chown root: ${TMP}/sops
+chown root:root ${TMP}/sops
 
 echo "Setting permissions ..."
 chmod 0755 ${TMP}/sops

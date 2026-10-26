@@ -18,8 +18,11 @@ curl -fsSL \
     -o ${TMP}/argocd-${ARGOCD_VERSION} \
     https://github.com/argoproj/argo-cd/releases/download/${ARGOCD_VERSION}/argocd-linux-amd64
 
-echo "chmod-ing ArgoCD CLI ..."
-chmod +x ${TMP}/argocd-${ARGOCD_VERSION}
+echo "Setting ownership ..."
+chown root:root ${TMP}/argocd-${ARGOCD_VERSION}
+
+echo "Setting permissions ..."
+chmod 0755 ${TMP}/argocd-${ARGOCD_VERSION}
 
 echo "Installing ArgoCD CLI ..."
 mv ${TMP}/argocd-${ARGOCD_VERSION} /usr/local/bin/argocd 

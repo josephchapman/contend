@@ -18,7 +18,7 @@ curl -fsSL \
 tar -xzvf ${TMP}/saml2aws_${SAML2AWS_VERSION}_linux_amd64.tar.gz -C ${TMP}/
 
 echo "Setting ownership ..."
-chown root: ${TMP}/saml2aws
+chown root:root ${TMP}/saml2aws
 
 echo "Setting permissions ..."
 chmod 0755 ${TMP}/saml2aws

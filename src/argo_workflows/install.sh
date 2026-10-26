@@ -17,8 +17,11 @@ curl -fsSL \
 echo "Unzipping Argo Workflows ..."
 gunzip ${TMP}/argo-linux-amd64.gz
 
-echo "chmod-ing Argo Workflows ..."
-chmod +x ${TMP}/argo-linux-amd64
+echo "Setting ownership ..."
+chown root:root ${TMP}/argo-linux-amd64
+
+echo "Setting permissions ..."
+chmod 0755 ${TMP}/argo-linux-amd64
 
 echo "Installing Argo Workflows ..."
 mv ${TMP}/argo-linux-amd64 /usr/local/bin/argo
